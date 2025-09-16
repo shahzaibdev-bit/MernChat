@@ -8,14 +8,10 @@ function ProfilePage() {
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
-    //e.target.files give a FileList object which hold multiple files that user selected in our case we are selection only one file that's why we are doing files[0] means grab the first file only
+
     if (!file) {
       return;
     }
-    //! FileReader is a browser‑native JavaScript class (part of the File API) that lets you read the contents of File or Blob objects selected via <input type="file">
-    //*When you call any of these methods, the reader works asynchronously.
-    //*Once done, it triggers onload (success) or onerror (failure), and the
-    //*result is available at reader.result
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -25,14 +21,6 @@ function ProfilePage() {
       setSelectedImg(base64Image);
       await updateProfile({ profilePic: base64Image });
     };
-    //!onload is an event handler.
-    //* It runs after the file has been completely read by the FileReader.
-    //* It ensures you don’t try to use the result before the reading finishes.
-
-    //!base64-encoded Data URL is a string that contains the whole image encoded in text form.
-    //* You can:
-    //* Use it as an image source: <img src={base64Image} />
-    //* Send it to your server inside JSON.
   };
 
   return (
@@ -43,7 +31,7 @@ function ProfilePage() {
             <h1 className="text-2xl font-semibold ">Profile</h1>
             <p className="mt-2">Your profile information</p>
           </div>
-          {/* Avatar upload section */}
+
           <div className="flex flex-col items-center gap-4">
             <div className="relative">
               <img
@@ -80,7 +68,7 @@ function ProfilePage() {
                 : "Click the camera icon to update your photo"}
             </p>
           </div>
-          {/* User info Section */}
+
           <div className="space-y-6">
             <div className="space-y-1.5">
               <div className="text-sm text-zinc-400 flex items-center gap-2">
@@ -102,7 +90,7 @@ function ProfilePage() {
               </p>
             </div>
           </div>
-          {/* Account information */}
+
           <div className="mt-6 bg-base-300 rounded-xl p-6">
             <h2 className="text-lg font-medium  mb-4">Account Information</h2>
             <div className="space-y-3 text-sm">

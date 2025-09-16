@@ -32,7 +32,7 @@ function SignupPage() {
     if (!/\S+@\S+\.\S+/.test(formData.email)) {
       return toast.error("Invalid Email format");
     }
-    // Used to check format of email through regular expression
+
     if (!formData.password) {
       return toast.error("Password is required");
     }
@@ -51,7 +51,6 @@ function SignupPage() {
 
   return (
     <div className=" min-h-screen grid lg:grid-cols-2">
-      {/* leftSide */}
       <div className="flex felx-col justify-center items-center p-6 sm:p12">
         <div className="w-full max-w-md space-y-8">
           <div className="text-center mb-8">
@@ -69,7 +68,6 @@ function SignupPage() {
             </div>
           </div>
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Full name input */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Full Name</span>
@@ -89,7 +87,7 @@ function SignupPage() {
                 />
               </div>
             </div>
-            {/* email Input */}
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">email</span>
@@ -109,7 +107,7 @@ function SignupPage() {
                 />
               </div>
             </div>
-            {/* Password Input */}
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text font-medium">Password</span>
@@ -140,7 +138,7 @@ function SignupPage() {
                 </button>
               </div>
             </div>
-            {/* Submit Button */}
+
             <button
               type="submit"
               className="btn btn-primary w-full"
@@ -156,7 +154,7 @@ function SignupPage() {
               )}
             </button>
           </form>
-          {/* Login Page Link */}
+
           <div className="text-center">
             <p className="text-base-content/60">
               Already have an account?{" "}
@@ -167,7 +165,7 @@ function SignupPage() {
           </div>
         </div>
       </div>
-      {/* Right Side */}
+
       <AuthImagePattern
         title="Join our community"
         subtitle="Connect with friends, share moments, and stay in touch with your loved ones."

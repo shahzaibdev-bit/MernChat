@@ -17,8 +17,7 @@ export const protectRoute = async (req, res, next) => {
     }
 
     const user = await User.findById(decoded.userId).select("-password");
-    //select mean select everthing from db againt the userId means all its feild fullName,email,ProfilePic but not password and put the data in user
-    //This is for security purpose
+    
 
     if (!user) {
       return res.status(404).json({ message: "User not Found" });

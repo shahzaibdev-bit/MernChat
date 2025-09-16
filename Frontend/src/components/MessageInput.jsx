@@ -38,12 +38,11 @@ const MessageInput = () => {
         image: imagePreview,
       });
 
-      // ✅ Clear form only after successful send
       setText("");
       setImagePreview(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (error) {
-      console.error("Message send failed:", error); // already handled with toast in store
+      console.error("Message send failed:", error);
     }
   };
 

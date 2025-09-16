@@ -56,7 +56,6 @@ function App() {
         />
       </Routes>
       <Toaster />
-      {/* Toaster is a react-hot-toast component used to give pop messages on form submition */}
     </div>
   );
 }

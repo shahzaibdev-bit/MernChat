@@ -12,12 +12,9 @@ function Sidebar() {
   const [showOnlineOnly, setShowOnlineOnly] = useState(false);
 
   useEffect(() => {
-    getUsers(); // ⬅️ Fetch all available users when component mounts
+    getUsers();
   }, [getUsers]);
 
-  // ✅ This logic filters the user list based on the toggle state (checkbox)
-  // ➤ If "showOnlineOnly" is true: only include users whose IDs are in the "onlineUsers" array
-  // ➤ Otherwise, show all users fetched from the database
   const filerterdUsers = showOnlineOnly
     ? users.filter((user) => onlineUsers.includes(user._id))
     : users;
@@ -34,13 +31,12 @@ function Sidebar() {
           <span className="font-medium hidden lg:block">Contacts</span>
         </div>
 
-        {/* ✅ Toggle to filter only online users */}
         <div className="mt-3 hidden lg:flex items-center gap-2">
           <label className="cursor-pointer flex items-center gap-2">
             <input
               type="checkbox"
               checked={showOnlineOnly}
-              onChange={(e) => setShowOnlineOnly(e.target.checked)} // ⬅️ Update state based on checkbox
+              onChange={(e) => setShowOnlineOnly(e.target.checked)}
               className="checkbox checkbox-sm"
             />
             <span className="text-sm">Show online only</span>
@@ -51,12 +47,11 @@ function Sidebar() {
         </div>
       </div>
 
-      {/* ✅ Display filtered users based on checkbox state */}
       <div className="overflow-y-auto w-full py-3">
         {filerterdUsers.map((user) => (
           <button
             key={user._id}
-            onClick={() => setSelectedUser(user)} // ⬅️ Set selected chat user
+            onClick={() => setSelectedUser(user)}
             className={`
               w-full p-3 flex items-center gap-3
               hover:bg-base-300 transition-colors
@@ -73,7 +68,7 @@ function Sidebar() {
                 alt={user.name}
                 className="size-12 object-cover rounded-full"
               />
-              {/* ✅ Show online indicator if user is online */}
+
               {onlineUsers.includes(user._id) && (
                 <span
                   className="absolute bottom-0 right-0 size-3 bg-green-500 
@@ -82,7 +77,6 @@ function Sidebar() {
               )}
             </div>
 
-            {/* Show name and status only on large screens */}
             <div className="hidden lg:block text-left min-w-0">
               <div className="font-medium truncate">{user.fullname}</div>
               <div className="text-sm text-zinc-400">
@@ -92,7 +86,6 @@ function Sidebar() {
           </button>
         ))}
 
-        {/* ✅ Message when no users are online (filtered out all) */}
         {filerterdUsers.length === 0 && (
           <div className="text-center text-zinc-500 py-4">No online users</div>
         )}

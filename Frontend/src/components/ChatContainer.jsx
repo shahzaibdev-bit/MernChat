@@ -20,19 +20,14 @@ function ChatContainer() {
   const messageEndRef = useRef(null);
 
   useEffect(() => {
-    // ⬇️ When selectedUser changes, fetch messages from DB
     getMessages(selectedUser._id);
 
-    // ⬇️ Setup real-time message listener using socket.io
-    // This listens for "newMessage" event and updates the UI immediately
     subscribeToMessages();
 
-    // ⬇️ Cleanup: Unsubscribe from socket listener when component unmounts or selectedUser changes
     return () => unSubscribeFromMessages();
   }, [selectedUser._id, subscribeToMessages, unSubscribeFromMessages]);
 
   useEffect(() => {
-    // ⬇️ Auto-scroll to the latest message when messages update
     if (messageEndRef.current && messages) {
       messageEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -58,7 +53,7 @@ function ChatContainer() {
             className={`chat ${
               message.senderId === authUser._id ? "chat-end" : "chat-start"
             }`}
-            ref={messageEndRef} // ⬅️ used for scrollIntoView
+            ref={messageEndRef}
           >
             <div className="chat-image avatar">
               <div className="size-10 rounded-full border">

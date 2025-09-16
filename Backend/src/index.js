@@ -5,34 +5,24 @@ import { connectDB } from "./lib/db.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-import path from "path";
-
 import dotenv from "dotenv";
 import { app, server } from "./lib/socket.js";
 dotenv.config();
 
 const PORT = process.env.PORT;
-const __direname = path.resolve()
+const FRONTEND_LINK = process.env.FRONTEND_LINK;
 
 app.use(express.json({ limit: "5mb" }));
-//{ limit: "5mb" } done this because there was a problem uploadinf large image file
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: FRONTEND_LINK,
     credentials: true,
   })
 );
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
-
-if (process.env.NODE_ENV==="production") {
-  app.use(express.static(path.join(__direname,"../Frontend/dist")))
-  app.get("*",(req,res)=>{
-    res.sendFile(path.join(__direname,"../Frontend","dist","index.html"))
-  })
-}
 
 server.listen(PORT, () => {
   console.log(`Server is runing on PORT:${PORT}`);
